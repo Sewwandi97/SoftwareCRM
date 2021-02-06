@@ -3,7 +3,7 @@
 <title>Customer Relationship Management System</title>
 </head>
 <body>
-    <h1 style="text-align: center">Welcome!!</h1>
+    <h1 style="text-align: center">hi!!</h1>
     <br>
     <h1 style="text-align: center">This is customer relationship management system<br>Created by She Squad</h1>
     <br>
