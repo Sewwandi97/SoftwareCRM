@@ -26,3 +26,5 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/employee', [EmpController::class, 'index'])->name('employee');
+
+//New comment for testing
