@@ -129,11 +129,37 @@
 		<img src="/img/logo.png" class="images">
 	</div>
 		<p class="sign" style="text-align:center">Login</p>
-		<form class="form1">
-		<input class="un " type="text" style="text-align:center" placeholder="Username">
-		<input class="pass" type="password" style="text-align:center" placeholder="Password">
-		<a class="submit" style="text-align:center">Login</a>
-		<p class="forgot" style="text-align:center"><a href="#">Forgot Password?</p>          
+
+		@if ($message = Session::get('error'))
+			<div class="alert alert-dangr alert-block">
+				<button type="button" class="close" data-dismiss="alert">Close</button>
+				<strong>{{$message}}</strong>
+			</div>
+		@endif
+
+		@if (count($errors)>0)
+			<div class="alert alert-danger" role="alert">
+				<ul>
+					@foreach($errors->all as $error)
+						<li>{{$error}}</li>
+					@endforeach
+				</ul>
+			</div>
+		@endif
+		<form class="form1" method="post" action="{{url('/main/checklogin')}}">
+		@csrf
+		<div class="form-group">
+		<input type= "text" class="form-control" name="User_Name"  style="text-align:center" placeholder="Username">
+		</div>
+		<div class="form-group">
+		<input type="password" class="form-control" name="Password"  style="text-align:center" placeholder="Password">
+		</div>
+		<div class="form-group">
+		<a href="/main/checklogin" class="submit" style="text-align:center">Login</a>
+		</div>
+		<div class="form-group">
+		<p class="forgot" style="text-align:center"><a href="#">Forgot Password?</p>
+		</div>          
     </div>
      
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

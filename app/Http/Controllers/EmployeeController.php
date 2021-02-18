@@ -21,7 +21,10 @@ class EmployeeController extends Controller
     }
 
     public function indexviewuser(){
-        return view('viewuser');
+        //return view('viewuser');
+        $employee->save(); 
+        $data=Employee::all();
+        return view('viewuser')->with('employees',$data);
     }
 
     public function store(Request $request) {
@@ -62,7 +65,45 @@ class EmployeeController extends Controller
     public function deleteuser($EmpID){
         $employee=Employee::find($EmpID); 
         $employee->delete();
+       // return view('save')->with('employees',$data);
         return redirect()->back();
+
+    }
+
+    public function updateuser($EmpID){
+        $employee=Employee::find($EmpID); 
+
+        return view('updateuser')->with('employeedata',$employee);
+    }
+
+    public function update_user(Request $request){
+        $EmpID=$request->EmpID;
+        $Name=$request->Name;
+        $User_Name=$request->Username;
+        $MobileNo=$request->Mobile_Number;
+        $Email=$request->Email;
+        $Address=$request->Address;
+        $EmpType=$request->Position;
+        $Status=$request->status;
+        $Password=$request->Password;
+
+
+        $data=Employee::find($EmpID);
+        $data->Address=$Address;
+        $data->Email=$Email;
+        $data->Status=$Status;
+        $data->EmpType=$EmpType;
+        $data->Name=$Name;
+        $data->User_Name=$User_Name;
+        $data->MobileNo=$MobileNo;
+        $data->Password=$Password;
+
+
+        
+        $data->save();
+
+        $data=Employee::all();
+        return view('viewuser')->with('employees',$data);
 
     }
 }

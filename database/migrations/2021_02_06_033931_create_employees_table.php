@@ -18,7 +18,7 @@ class CreateEmployeesTable extends Migration
             $table->string('Name');
             $table->string('User_Name');
             $table->string('Password');
-            $table->string('Email');
+            $table->string('Email')->unique();
             $table->string('MobileNo');
             $table->string('Address');
             $table->string('EmpType');
@@ -27,6 +27,8 @@ class CreateEmployeesTable extends Migration
             $table->unsignedBigInteger('RoleID');
             $table->foreign('RoleID')->references('RoleID')->on('roles');
             $table->timestamps(); 
+            $table->timestamp('email_verified_at')->nullable();
+            $table->rememberToken();
         });
     }
 

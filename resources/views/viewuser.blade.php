@@ -76,7 +76,7 @@ a:active {
       <br>
 
       <div class="container">
-      <form action="" id="myform 1">
+      <form method="post" id="myform1" action="">
         <table>
           <tr>
             <th >Emp ID</th>
@@ -95,52 +95,62 @@ a:active {
           <tbody>
           @foreach($employees as $employee)
             <tr>
-            <td>{{$employee->EmpID}}</td>
-            <td>{{$employee->Name}}</td>
-            <td>{{$employee->User_Name}}</td>
-            <td>{{$employee->Password}}</td>
-            <td>{{$employee->Email}}</td>
-            <td>{{$employee->MobileNo}}</td>
-            <td>{{$employee->Address}}</td>
-            <td>{{$employee->EmpType}}</td>
-            <td>{{$employee->RoleID}}</td>
-            <td>{{$employee->Added_By}}</td>
-            <td>{{$employee->Status}}</td>
+            <input type="hidden" class="delete_value" value="{{$employee->EmpID}}">
+            <td>{{$employee['EmpID']}}</td>
+            <td>{{$employee['Name']}}</td>
+            <td>{{$employee['User_Name']}}</td>
+            <td>{{$employee['Password']}}</td>
+            <td>{{$employee['Email']}}</td>
+            <td>{{$employee['MobileNo']}}</td>
+            <td>{{$employee['Address']}}</td>
+            <td>{{$employee['EmpType']}}</td>
+            <td>{{$employee['RoleID']}}</td>
+            <td>{{$employee['Added_By']}}</td>
+            <td>{{$employee['Status']}}</td>
             <td>
-                <div class="btn-group float-right" role="group">
-                  <button type="button" data-toggle="modal" data-target="#exampleModal" >Delete</button>
+                <div class="btn-group" role="group">
+                 <button type="button" data-toggle="modal" data-target="#exampleModal1" >Delete</button>
                 </div>
 
-                <div class="btn-group float-right" role="group">
-                  <button type="button" data-toggle="modal" data-target="#exampleModal1" >Update</button>
+                <div class="btn-group" role="group">
+                  <button type="button" data-toggle="modal" data-target="#exampleModal2" >Update</button>
                 </div>
-            </td>  
-            
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            </td>      
+        </tr>
+        @endforeach
+        </tbody>
+        </table>
+        </form >
+       
+      </div>
+
+      
+      <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel" style="color:#233554">Alert</h5>
+                        <h5 class="modal-title" id="exampleModalLabel1" style="color:#233554">Delete Alert</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body" style="color:#233554">
-                        You are going to delete an employee. Do you want to continue ?
+                        You are going to delete Emp ID {{$employee->EmpID}}. Do you want to continue ?
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" form="myform 1" class="btn btn-primary"><a href="/deleteUser/{{$employee->EmpID}}" >Continue</a></button>
+                    <button type="submit"  class="btn btn-primary" form="myform1"><a href="/deleteUser/{{$employee['EmpID']}}" >Continue</a></button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+       
+        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel1" style="color:#233554">Update Alert</h5>
+                        <h5 class="modal-title" id="exampleModalLabel" style="color:#233554">Update Alert</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
@@ -150,21 +160,12 @@ a:active {
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" form="myform" class="btn btn-primary">Update</button>
+                    <button type="submit" form="myform1" class="btn btn-primary"><a href="/updateUser/{{$employee['EmpID']}}" >Update</a></button>
                     </div>
                 </div>
             </div>
         </div>
-        </tr>
-        @endforeach
-
-          </tbody>
-        </table>
-        </form >
-      </div>
-
-      
-   
+       
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
